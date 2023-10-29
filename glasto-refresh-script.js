@@ -113,7 +113,7 @@
 
     // paste new person details
     let addPersonInput = el("input");
-    addPersonInput.setAttribute("placeholder", "Paste one or more row from the spreadsheet here...");
+    addPersonInput.setAttribute("placeholder", "Paste one row or multiple rows from the spreadsheet here...");
     addPersonInput.addEventListener("paste", function (e) {
       let pastedData = e.clipboardData.getData("Text");
       let rows = pastedData.split("\n");
