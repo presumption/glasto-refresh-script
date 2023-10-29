@@ -8,6 +8,9 @@
 // @icon         https://cdn.glastonburyfestivals.co.uk/wp-content/themes/glasto/assets/favicon/favicon-32x32.png
 // @grant        window.focus
 // @grant        GM_notification
+// @run-at       document-end
+// @updateURL    https://raw.githubusercontent.com/presumption/glasto-refresh-script/main/glasto-refresh-script.js
+// @downloadURL  https://raw.githubusercontent.com/presumption/glasto-refresh-script/main/glasto-refresh-script.js
 // ==/UserScript==
 
 // How the script works:
@@ -124,16 +127,13 @@
     document.body.appendChild(ui);
   });
 
-  let RELOAD_DELAY = 200; // milliseconds
-  let WAITING_TEXT = "You will be held";
-
-  // window.addEventListener("load", function () {
-  //   if (isWaitingPage()) {
-  //     refresh();
-  //   } else {
-  //     notify();
-  //   }
-  // });
+  window.addEventListener("load", function () {
+    if (isWaitingPage()) {
+      refresh();
+    } else {
+      notify();
+    }
+  });
 
   function nextId() {
     let persons = loadPersons();
@@ -271,27 +271,19 @@
   }
 
   function refresh() {
+    let reloadDelay = window.localStorage.getItem("reload_delay") || 200;
     setTimeout(function () {
       window.location.reload();
-    }, RELOAD_DELAY);
+    }, reloadDelay);
   }
 
   function isWaitingPage() {
-    let found = document.body.innerHTML.toString().indexOf(WAITING_TEXT) > -1;
+    let waitingText = window.localStorage.getItem("waiting_text") || "You will be held";
+    let found = document.body.innerHTML.toString().indexOf(waitingText) > -1;
     if (found) {
-      console.log("Page contains text: " + WAITING_TEXT);
+      console.log("Page contains text: " + waitingText);
     } else {
-      console.log("Page does not contain text: " + WAITING_TEXT);
-    }
-    return found;
-  }
-
-  function isBuyingPage() {
-    let found = document.body.innerHTML.toString().indexOf(BUYING_TEXT) > -1;
-    if (found) {
-      console.log("Page contains text: " + BUYING_TEXT);
-    } else {
-      console.log("Page does not contain text: " + BUYING_TEXT);
+      console.log("Page does not contain text: " + waitingText);
     }
     return found;
   }
