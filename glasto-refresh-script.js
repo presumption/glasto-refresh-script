@@ -97,9 +97,9 @@
     headerRegNum.innerText = "Reg number";
     let headerZip = el("th");
     headerZip.innerText = "Zip code";
-    let headerAddr = el("th");
-    headerAddr.innerText = "Address";
-    header.append(headerDelete, headerId, headerName, headerRegNum, headerZip, headerAddr);
+    // let headerAddr = el("th");
+    // headerAddr.innerText = "Address";
+    header.append(headerDelete, headerId, headerName, headerRegNum, headerZip);
     table.appendChild(header);
     // rows
     let persons = loadPersons();
@@ -181,13 +181,13 @@
       window.localStorage.setItem("glasto-zip-" + personId, e.target.value);
     });
 
-    let cellAddr = el("td");
-    let cellAddrInput = el("input");
-    cellAddr.appendChild(cellAddrInput);
-    cellAddrInput.value = window.localStorage.getItem("glasto-addr-" + personId) || "";
-    cellAddrInput.addEventListener("input", function (e) {
-      window.localStorage.setItem("glasto-addr-" + personId, e.target.value);
-    });
+    // let cellAddr = el("td");
+    // let cellAddrInput = el("input");
+    // cellAddr.appendChild(cellAddrInput);
+    // cellAddrInput.value = window.localStorage.getItem("glasto-addr-" + personId) || "";
+    // cellAddrInput.addEventListener("input", function (e) {
+    //   window.localStorage.setItem("glasto-addr-" + personId, e.target.value);
+    // });
 
     let cellDelete = el("td");
     let cellDeleteButton = el("button");
@@ -198,8 +198,8 @@
       deletePerson(personId);
     });
 
-    row.append(cellDelete, cellId, cellName, cellRegNum, cellZip, cellAddr);
-    console.log("Festivalgoer #", cellId.innerText, cellNameInput.value, cellRegNumInput.value, cellZipInput.value, cellAddrInput.value);
+    row.append(cellDelete, cellId, cellName, cellRegNum, cellZip);
+    console.log("Festivalgoer #", cellId.innerText, cellNameInput.value, cellRegNumInput.value, cellZipInput.value);
     return row;
   }
 
