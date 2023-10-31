@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Refresh Glastonbury Tix
 // @namespace    https://glastonbury.seetickets.com
-// @version      0.1
+// @version      0.2
 // @description  Refresh-bot to find tix
 // @author       Christina
 // @match        https://glastonbury.seetickets.com/*
